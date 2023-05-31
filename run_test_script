@@ -1,0 +1,3 @@
+
+javac -d test -cp .:junit-platform-console-standalone-1.9.3.jar test/Test1.java && 
+java -jar junit-platform-console-standalone-1.9.3.jar  --class-path test --select-class Test1
