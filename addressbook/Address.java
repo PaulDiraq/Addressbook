@@ -1,7 +1,7 @@
 package addressbook;
 
 public class Address{
-    private String land;
+    private String land;   
     private String city;
     private int postcode;
     private String street;
