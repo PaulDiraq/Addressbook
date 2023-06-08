@@ -15,11 +15,25 @@ class TestName{
     }
     
     @Test
-    void test_first_name_only(){
+    void test_no_name(){
 	Name name = new Name(null, null);
 	assertNull(name.getFirstName());
 	assertNull(name.getLastName());
 	assertEquals(name.toString(), "<no name>");
+    }
+    @Test
+    void set_name(){
+	Name name = new Name(null, null);
+	assertNull(name.getFirstName());
+	assertNull(name.getLastName());
+	name.setLastName("Hull");
+	assertNull(name.getFirstName());
+	assertEquals(name.getLastName(),"Hull");
+	assertEquals(name.toString(), "<> Hull");
+	name.setFirstName("Heinrich");
+	assertEquals("Heinrich",name.getFirstName());
+	assertEquals("Hull",name.getLastName());
+	assertEquals("Heinrich Hull",name.toString() );
     }
 
 }
