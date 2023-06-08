@@ -1,30 +1,35 @@
 package addressbook;
 
-public final class PersonalContact extends Contact{
-    Name name=new Name(null, null);
+public final class CompanyContact extends Contact{
+    String name = null;
+    Name owner=new Name(null, null);
 
     /**
        @return return the name.
      */
-    public Name getName(){
-	return this.name;
+    public Name getOwner(){
+	return this.owner;
     }
 
     /**
        @param[name] set the name.
      */
-    public void setName( Name name){
-	if (name == null){
-	    name = new Name(null, null);
+    public void setOwner( Name owner){
+	if (owner == null){
+	    owner = new Name(null, null);
 	};
-	this.name=name;
+	this.owner=owner;
     }
     /**
        @return string representation of the contact.
      */
     @Override
     public String toString(){
-	return this.name.toString() +", "+this.address.toString();
+	name = "<>";
+	if (this.name != null){
+	    name = this.name;
+	};
+	return name+ " ("+this.owner.toString() +") "+this.address.toString();
     }
     /**
        accept method to accept a visitor.
