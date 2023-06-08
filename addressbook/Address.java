@@ -50,14 +50,14 @@ public class Address{
        @return the city of the address.
      */
     public String getStreet(){
-	return this.city;
+	return this.street;
     }
 
     /**
        @param set a new city for this address
      */
-    public void setStreet(String city){
-	this.city = city;
+    public void setStreet(String street){
+	this.street = street;
     }
 
     /**
@@ -73,5 +73,23 @@ public class Address{
     public void setHouseNumber(Integer houseNumber){
 	this.houseNumber = houseNumber;
     }
-
+    public String toString(){
+	String postcode = "<>";
+	if (this.postcode != null){
+	    postcode = this.postcode.toString();
+	};
+	String city = "<>";
+	if (this.city != null){
+	    city = this.city;
+	};
+	String houseNumber = "<>";
+	if (this.houseNumber != null){
+	    houseNumber = this.houseNumber.toString();
+	};
+	String street = "<>";
+	if (this.street != null){
+	    street = this.street;
+	};
+	return street+" "+houseNumber+" in "+postcode+" "+city;
+    }
 }
