@@ -1,3 +1,15 @@
 
 *.class
 *~
+\#*
+.#*
+
+#javadoc files
+*.js
+*.html
+*.css
+*.svg
+resources/
+legal/
+element-list
+
