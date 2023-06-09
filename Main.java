@@ -5,11 +5,16 @@ import addressbook.PersonalContact;
 
 
 public class Main{
-    
+
+    private static void test_proc(){
+	Addressbook addressbook = new Addressbook();
+	addressbook.addContact();
+	addressbook.printContacts();
+	addressbook.search("Christian-Albrechts-Platz");
+	addressbook.deleteContact();
+
+    }
     public static void main(String[] args){
-	Addressbook book = new Addressbook();
-	PersonalContact contact=new PersonalContact();
-	System.out.println("Hello! It works, you can compile and execute the project.");
-	
+	test_proc();
     }
 }
