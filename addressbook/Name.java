@@ -2,11 +2,11 @@ package addressbook;
 
 /**
    class to represent a name
-   consists of a first name and last name
+   consists of a first name and last name (which can be null) 
  */
 public class Name{
-    private String firstName=null; //can always be null 
-    private String lastName=null;  // can always be null
+    private String firstName=null; //can be null 
+    private String lastName=null;  // can  be null
     /**
        @param[firstName] the first name (may be null)
        @param[lastName] the last name (may be null)

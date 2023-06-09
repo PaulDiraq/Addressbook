@@ -1,5 +1,7 @@
 package addressbook;
-
+/**
+   class representing the address of someone or some building 
+ */
 public class Address{
     private String city;
     private Integer postcode;
