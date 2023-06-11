@@ -2,6 +2,7 @@ package addressbook;
 import java.util.ArrayList;
 /**
    Visitor to implement print_formatted_contact
+   prints a contact as formatted block.
  */
 class FormattedContactPrintingVisitor implements ContactVisitor {
     int indentation;
@@ -134,9 +135,86 @@ class FormattedContactPrintingVisitor implements ContactVisitor {
     }
 }
 
+/**
+   Visitor for search.
+ */
+
+class SearchVisitor implements ContactVisitor{
+    String searchTerm;
+    Boolean found=false;
+    public SearchVisitor(String searchTerm){
+	this.searchTerm = searchTerm;
+    }
+
+    public void visit(PersonalContact contact){
+	Name name = contact.getName();
+	if (name.getFirstName() != null && name.getFirstName().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+    	if (name.getLastName() != null && name.getLastName().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	Address address = contact.getAddress();
+    	if (address.getStreet() != null && address.getStreet().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getCity() != null && address.getCity().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getHouseNumber() != null && address.getHouseNumber().toString().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getPostcode() != null && address.getPostcode().toString().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+    }
+    
+    public void visit(CompanyContact contact){
+	if(contact.getName() != null && contact.getName().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	Name name = contact.getOwner();
+	if (name.getFirstName() != null && name.getFirstName().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+    	if (name.getLastName() != null && name.getLastName().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	Address address = contact.getAddress();
+    	if (address.getStreet() != null && address.getStreet().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getCity() != null && address.getCity().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getHouseNumber() != null && address.getHouseNumber().toString().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+	if (address.getPostcode() != null && address.getPostcode().toString().contains(this.searchTerm)){
+	    this.found = true;
+	    return;
+	}
+    }
+    public Boolean has_found(){
+	return this.found;
+    };
+}
+
 
 public class Addressbook{
-    private ArrayList addresses;
+    private ArrayList<Contact> addresses=new ArrayList<Contact>();
     /**
        helper function to print a single contact in a multiline block.
        @param[indentation ]  the level by which the block should be indented.
@@ -179,8 +257,16 @@ public class Addressbook{
        @return true if search finds an entry false otherwise
      */
     public boolean search(String search_expression){
-	//TODO
-	return false;
+	boolean found = false;
+	for (Contact contact : this.addresses){
+	    SearchVisitor visitor = new SearchVisitor(search_expression);
+	    contact.accept(visitor);
+	    if (visitor.has_found()){
+		this.print_formatted_contact(1,contact);
+		found = true;
+	    }
+	}
+	return found;
     }
     
 }
