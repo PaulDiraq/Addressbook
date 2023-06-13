@@ -1,6 +1,0 @@
-
-javac -d test -cp .:junit-platform-console-standalone-1.9.3.jar test/Test1.java && 
-javac -d test -cp .:junit-platform-console-standalone-1.9.3.jar test/TestName.java && 
-javac -d test -cp .:junit-platform-console-standalone-1.9.3.jar test/TestAddress.java && 
-javac -d test -cp .:junit-platform-console-standalone-1.9.3.jar test/TestPersonalContact.java && 
-java -jar junit-platform-console-standalone-1.9.3.jar   --class-path=test --scan-class-path
