@@ -237,9 +237,9 @@ public class Addressbook{
         Scanner sc = new Scanner(System.in);
 		int contact_num = 0;
 		boolean status = true;
-		if (addressBook.size() > 0){
+		if (addresses.size() > 0){
 			System.out.println("Select the  entry you want to delete (enter -1 to cancel):");
-			for (int i = 0; i < addressBook.size(); i++) {
+			for (int i = 0; i < addresses.size(); i++) {
 				System.out.println("Entry: " + i);
                 //printContact(addressBook.get(i));
 				// => Needs a function to print a contact
@@ -258,13 +258,13 @@ public class Addressbook{
 					break;
 					}
 					// if contact num is out of bounds, print "error message" and try again (=> while loop)
-					if(contact_num > addressBook.size()){
+					if(contact_num > addresses.size()){
 					System.out.println("Entry is not part of addressbook!");
 					}
 					// selected contact is deleted
 					else{
 					System.out.println("Entry " + contact_num + "was deleted");
-					addressBook.remove(contact_num);
+					addresses.remove(contact_num);
 					status = true;
 					break;
 					}
@@ -312,7 +312,7 @@ public class Addressbook{
 			// Add address
 			address = buildAddress(sc);
 			person.setAddress(address);
-			addressBook.add(person); 
+			addresses.add(person); 
 		}
 		// if 2 was entered, a CompanyContact is created
 		else if (chosenOption.equals("2")){
@@ -331,7 +331,7 @@ public class Addressbook{
 			// Add address
 			address = buildAddress(sc);
 			person.setAddress(address);
-			addressBook.add(person); 
+			addresses.add(person); 
 		}
 		else{System.out.println("Invalid input!");}
     }
