@@ -1,5 +1,6 @@
 package addressbook;
-import java.util.ArrayList;
+import java.util.ArrayList; // import the ArrayList class
+import java.util.Scanner; // import Scanner to read strings from input
 /**
    Visitor to implement print_formatted_contact
    prints a contact as formatted block.
@@ -232,16 +233,107 @@ public class Addressbook{
        @return true if deleteContact was successful false otherwise
      */
     public boolean deleteContact(){
-	//TODO
-	return false;
-    }
+		// Initialize scanner, used to get user input.
+        Scanner sc = new Scanner(System.in);
+		int contact_num = 0;
+		boolean status = true;
+		if (addressBook.size() > 0){
+			System.out.println("Select the  entry you want to delete (enter -1 to cancel):");
+			for (int i = 0; i < addressBook.size(); i++) {
+				System.out.println("Entry: " + i);
+                //printContact(addressBook.get(i));
+				// => Needs a function to print a contact
+				while(true){
+					// check if input is a valid integer
+					try{
+					contact_num = Integer.parseInt(sc.nextLine());
+					} 
+					catch (NumberFormatException nfe){
+					System.out.println("Wrong format");
+					}
+					// if input = -1, cancel delete
+					if (contact_num == -1 ){
+					System.out.println("Successfully canceled!");
+					status = false;
+					break;
+					}
+					// if contact num is out of bounds, print "error message" and try again (=> while loop)
+					if(contact_num > addressBook.size()){
+					System.out.println("Entry is not part of addressbook!");
+					}
+					// selected contact is deleted
+					else{
+					System.out.println("Entry " + contact_num + "was deleted");
+					addressBook.remove(contact_num);
+					status = true;
+					break;
+					}
+				}
+			}
+    	}
+		// catch empty Addressbook
+		else{
+			System.out.println("Not possible to delete. Addressbook is empty.");
+			status = false;
+		}
+		// close scanner, gave error in VSCode without
+		sc.close();
+		// returns boolean if delete was successful
+		return status;
+	}
+
     /**
        adds  a new contact.
        @return true if addContact was successful false otherwise
      */
-    public boolean addContact(){
-	//TODO
-	return false;
+    public void addContact(){
+		// Initialize scanner, used to get user input.
+        Scanner sc = new Scanner(System.in);
+		Name name = new Name("","");
+		String firstName;
+		String lastName;
+		String companyName;
+        Name owner = new Name("","");
+        Address address;
+        String chosenOption;
+		System.out.println("What kind of contact do you want to add? 1: Person 2: Company");
+        chosenOption = sc.nextLine();
+		// if 1 was entered, a PersonalContact is created
+		if (chosenOption.equals("1")){
+			// Add Name
+			PersonalContact person = new PersonalContact();
+			System.out.println("Enter the first name:");
+        	firstName = sc.nextLine();
+			name.setFirstName(firstName);
+			System.out.println("Enter the last name:");
+        	lastName = sc.nextLine();
+			name.setLastName(lastName);
+			person.setName(name);
+			// Add address
+			address = buildAddress(sc);
+			person.setAddress(address);
+			addressBook.add(person); 
+		}
+		// if 2 was entered, a CompanyContact is created
+		else if (chosenOption.equals("2")){
+			// Add Name
+			CompanyContact person = new CompanyContact();
+			System.out.println("Enter the Owners' first name:");
+        	firstName = sc.nextLine();
+			owner.setFirstName(firstName);
+			System.out.println("Enter the Owners' last name:");
+        	lastName = sc.nextLine();
+			owner.setLastName(lastName);
+			person.setOwner(owner);
+			System.out.println("Enter the Companys' name:");
+        	companyName = sc.nextLine();
+			person.setName(companyName);
+			// Add address
+			address = buildAddress(sc);
+			person.setAddress(address);
+			addressBook.add(person); 
+		}
+		else{System.out.println("Invalid input!");}
     }
     
     /**
@@ -269,6 +361,71 @@ public class Addressbook{
 	return found;
     }
     
+	// helper method to get adress for addContact
+	private Address buildAddress(Scanner sc) {
+        String city;
+        int postcode;
+        String street;
+        int houseNumber;
+
+        System.out.println("What is the address of your contact?");
+        // get the city via user input
+        System.out.println("Enter a city:");
+        city = sc.nextLine();
+        //  if no city is given, set to null
+        if (city.equals("")){
+            city = null;
+        }
+        // get the postcode via userinput
+        while(true){
+            System.out.println("Enter a postcodecode:");
+            String postcodeString = sc.nextLine();
+            // if no postcode is given, set to 0
+            if (postcodeString.equals("")){
+                postcode = 0;
+                break;
+            }
+            // else, convert input to Integer. 
+			// If a wrong format string is given an error is raised and another
+            // input can be given
+            else{
+                try {
+                    postcode = Integer.parseInt(postcodeString);
+                    break;
+                }catch(NumberFormatException nfe){
+                    System.out.println("Wrong format");
+                }
+            }
+        }
+        // get the street name via user input
+        System.out.println("Enter a street:");
+        street = sc.nextLine();
+        // if no street is given, set street to null
+        if (street.equals("")){
+            street = null;
+        }
+        // same procedure as with postcode.
+        while(true){
+            System.out.println("Enter the house number:");
+            String houseNumberString = sc.nextLine();
+            if (houseNumberString.equals("")){
+                houseNumber = 0;
+                break;
+            }
+            else{
+                try {
+                    houseNumber = Integer.parseInt(houseNumberString);
+                    break;
+                }catch(NumberFormatException nfe){
+                    System.out.println("Wrong format");
+                }
+            }
+        }
+        Address address = new Address(city,postcode,street,houseNumber);
+        return address;
+    }
+
 }
+
 
 
