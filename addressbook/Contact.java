@@ -1,21 +1,21 @@
 package addressbook;
 
 
-public abstract class Contact{
+ abstract class Contact{
     Address address=new Address(null, null, null, null);
 
     
     /**
        @return return the address.
     */
-    public Address getAddress(){
+     Address getAddress(){
 	return this.address;
     }
 
     /**
        @param[address] set the address.
     */
-    public void setAddress( Address address){
+     void setAddress( Address address){
 	if (address == null){
 	    address = new Address(null, null, null, null);
 	};
@@ -30,6 +30,6 @@ public abstract class Contact{
     /**
        @return returns a String representation of the contact.
      */
-    public abstract String toString();
+     public abstract  String toString();
 
 }

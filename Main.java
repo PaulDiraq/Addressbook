@@ -1,7 +1,4 @@
 import addressbook.Addressbook;
-import addressbook.Address;
-import addressbook.Name;
-import addressbook.PersonalContact;
 
 
 public class Main{
@@ -12,8 +9,12 @@ public class Main{
 	addressbook.printContacts();
 	addressbook.search("Christian-Albrechts-Platz");
 	addressbook.deleteContact();
-
     }
+    
+    
+    /**
+       the main function
+     */
     public static void main(String[] args){
 	test_proc();
     }

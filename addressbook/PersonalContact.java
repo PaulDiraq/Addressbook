@@ -7,20 +7,20 @@ package addressbook;
    an address (which can be Address(null,null,null, null)
    a name (which can be Name(null,null)
  */
-public final class PersonalContact extends Contact{
+ final class PersonalContact extends Contact{
     Name name=new Name(null, null);
 
     /**
        @return return the name. is never null
      */
-    public Name getName(){
+     Name getName(){
 	return this.name;
     }
 
     /**
        @param[name] set the name.
      */
-    public void setName( Name name){
+     void setName( Name name){
 	if (name == null){
 	    name = new Name(null, null);
 	};
@@ -30,7 +30,7 @@ public final class PersonalContact extends Contact{
        @return string representation of the contact.
      */
     @Override
-    public String toString(){
+     public String toString(){
 	return this.name.toString() +", "+this.address.toString();
     }
     /**

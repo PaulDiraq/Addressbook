@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\begin{document}
+\section{Entwicklungsumgebung}
+Verwendet wurde javac in der version 20.0.1
+und openjdk version 20.0.1+9-29 mit 64-bit Server VM.
+Weitere Verwendete Programme sind:
+\begin{enumerate}
+\item GNU Emacs
+\item Visual Studio
+\item XeTeX
+\item git
+\end{enumerate}
+\section{Benutzung}
+Jeder Kontakt ist entweder eine Person oder ein Unternehmen.
+Eine Person als Kontakt kann einen Vornamen, einen Nachnamen, einen Wohnort,
+eine PLZ des Wohnortes, eine Straße, eine Hausnummer haben.
+Ein Unternehmen kann einen Namen, eine Ort des Hauptsitzes, eine PLZ des Ortes
+des Hauptsizes, einen Straße des Hauptsitzes, eine Hausnummer des Hauptsitzes
+haben, sowie einen Vornahmen des Besizers und einen Nachnahmen des Besitzers
+haben. Alle diese Attribute können in beliebiger Kombination abwesend sein. 
+Um das Addressbuch zu benutzen, muss eine ein Addressbook (die Klasse)
+instanziert werden, auf dieser Instanz muss zunächst \textit{.addContact}
+aufgerufen werden. Pro Aufruf kann ein Kontakt hinzugefügt werden.
+Anschließend können die hinzugefügten Kontakte mit \textit{.printContacts}
+ausgedruckt werden oder mit \textit{search(string)} durchsucht werden, ob
+welche Kontakte den searchterm \textit{string} in irgendeinem Feld
+enthalten. (Es kann auch nach Zahlen gesucht werden).
+Weiterhin kann über \textit{.deleteContact()} ein Kontakt eliminiert werden.
+\end{document}

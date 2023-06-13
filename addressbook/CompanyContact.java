@@ -10,21 +10,21 @@ package addressbook;
    Note:  only the default constructor CompanyContact() is available,
    all attributes have to be set afterwards.
  */  
-public final class CompanyContact extends Contact{
+ final class CompanyContact extends Contact{
     String name = null;
     Name owner=new Name(null, null);
 
     /**
        @return return the name of the owner. never returns null.
      */
-    public Name getOwner(){
+     Name getOwner(){
 	return this.owner;
     }
 
     /**
        @param[name] set the name of the owner if null is given, Name(null,null).
      */
-    public void setOwner( Name owner){
+     void setOwner( Name owner){
 	if (owner == null){
 	    owner = new Name(null, null);
 	};
@@ -33,14 +33,14 @@ public final class CompanyContact extends Contact{
     /**
        @return return the name. is never null
      */
-    public String getName(){
+     String getName(){
 	return this.name;
     }
 
     /**
        @param[name] set the name. 
      */
-    public void setName( String name){
+     void setName( String name){
 	this.name=name;
     }
  
